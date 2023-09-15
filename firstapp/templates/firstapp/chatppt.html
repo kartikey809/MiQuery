@@ -1,0 +1,28 @@
+{% extends 'commons/base.html' %}
+{% block content %}
+{% block body %}
+
+<form action="/ppt_explain" method="POST">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2"  id= 'ppt_input_explainbar' name="file_url" type="file" placeholder="Search" aria-label="Search">
+    <button id="btn1" class="btn btn-outline-success my-2 my-sm-0" type="submit">Get ppt Explaination</button>
+</form>
+<br>
+<textarea id="data1" rows="20" cols="100" >{{data}}</textarea>
+<script>
+    let button = document.querySelector("#btn1");
+    let res = document.getElementByIdI("#data1")
+    button.disabled = true;
+    input.addEventListener("change", stateHandle);
+    
+    function stateHandle() {
+        if(document.getElementById("#ppt_input_explainbar").files.length == 0) {
+            console.log("yes")
+            button.disabled = true;
+        } else {
+            button.disabled = false;
+        }
+    }
+</script>
+{% endblock %}
+{% endblock %}

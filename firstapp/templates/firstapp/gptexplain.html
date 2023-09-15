@@ -1,0 +1,39 @@
+{% extends 'commons/base.html' %}
+
+{% block css %}
+<style>
+#btn1{
+    background: transparent;
+}
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+{% block body %}
+
+<form action="/gpt_explain" method="POST">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2"  id= 'gpt_input_explainbar' name="query" type="text" placeholder="Search" aria-label="Search">
+    <button id="btn1" class="btn btn-outline-light my-2 my-sm-0" type="submit">Get GPT Explaination</button>
+</form>
+<br>
+<pre><code><textarea rows="20" cols="100" >{{data}}</textarea></code></pre>
+<script>
+    let input = document.querySelector("#gpt_input_explainbar");
+    let button = document.querySelector("#btn1");
+    button.disabled = true;
+    input.addEventListener("change", stateHandle);
+    
+    function stateHandle() {
+        if(document.querySelector("#gpt_input_explainbar").value === "") {
+            button.disabled = true;
+        } else {
+            button.disabled = false;
+        }
+    }
+</script>
+{% endblock %}
+{% endblock %}

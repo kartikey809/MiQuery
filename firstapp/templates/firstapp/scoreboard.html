@@ -1,0 +1,37 @@
+
+{% extends 'commons/base.html' %}
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<h2><I> SCOREBOARD </I></h2>
+<table class="table" style="color: white;">
+    <thead>
+      <tr><th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Usecase</th>
+        <th scope="col">Upvotes</th>
+        <th scope="col">View Count</th>
+        <th scope="col">Copy Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in resp %}
+      <tr>
+        <td>{{  r.author }}</td>
+        <td><a href="{% url 'viewcode' id=r.id %}">{{  r.title }}</a></td>
+        <td>{{  r.usecase }}</td>
+        <td>{{  r.upvote }}</td> 
+        <td>{{  r.view_count }}</td>
+        <td>{{  r.copy_count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'commons/base.html' %}
+​
+{% block css %}
+​
+<style type="text/css">
+	.home-page {
+        height: 100%;
+    }
+
+  .heading_usecase{
+        font-size: 30px;
+        font-weight: bold;
+        color: #FFCA01;
+        text-align: left;
+        margin-left: 7%;
+    }
+  .heading_filter{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    margin-left: 7%;
+    margin-top: 5%;
+  }  
+​
+  .search-bar-buttons{
+    width:   100%;
+    display: flex;
+	justify-content: space-around !important;
+  }
+  .filter-elements{
+    /* width:   100%; */
+    margin-top: 5%;
+    display: flex;
+  }
+  #search-bar{
+      background-color: transparent;
+      margin-top: 5%;
+      margin-left: 7%;
+      height: 60px;
+      width: 360px;
+      color: white;
+    }
+  #search-bar::placeholder{
+    color: white;
+    opacity: none;
+    padding-left: 10px;
+  }
+​
+  .normal-search{
+    background-color: transparent; /* Replace with your desired background color */
+    color: white; /* Text color on the button */
+    padding: 10px; /* Adjust padding to your liking */
+    border-width: 3px;
+    border-color: none; 
+    cursor: pointer;
+    width: 100px;
+    height: 60px;
+    margin-top: 5%;
+    flex: content;
+    text-align: center;
+    margin-left: 4%;
+  }
+  .filter-byss{
+    height: 50px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 4%;
+  }
+  .use-cases{
+    margin-top: 5%;
+    margin-left: 75px;
+    border-bottom: 1px solid white;
+    margin-bottom: 80px;
+  }
+  
+  .title-usecase{
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .title-dept{
+    font-size: 6px;
+    font-weight: bold;
+  }
+  .title-desc{
+    color: white;
+  }
+​
+  .title-time{
+    font-weight: bold;
+  }
+​
+</style>
+​
+{% endblock %}
+​
+{% block content %}
+​
+<div class = "home-page">
+  <div class="heading_usecase">USECASE</div>
+  <div class="search-bar-buttons">
+    <input type="search" id="search-bar" name="search" placeholder="What are you looking for?">
+    <button class="normal-search">Search</button>
+    <button class="normal-search">Advanced Search</button>
+    <button class="normal-search">GPT Search</button>
+  </div>
+  <div class="filter-elements">
+    <div class="heading_filter">FILTER BY</div>
+    <button class="filter-byss">Engineering</button>
+    <button class="filter-byss">Tech</button>
+    <button class="filter-byss">DnA</button>
+  </div>
+  <div class="use-cases">
+    <div class="title_usecase">TITLE</div><br>
+    <div class="title_dept">USECASE</div><br>
+    <div class="title_desc">
+      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+       ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+       laboris nisi ut aliquip ex ea commodo consequat.</span>
+    </div><br>
+    <div class="title_time">Time Uploaded</div><br><br>
+  </div>
+</div>
+{% endblock %}

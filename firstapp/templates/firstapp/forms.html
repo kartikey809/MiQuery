@@ -1,0 +1,43 @@
+{% extends 'commons/base.html' %}
+{% block content %}
+{% block body %}
+<body>
+
+<form action = "{% url 'updatecode' id=id %}" method = "post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="submit_button">
+        <button type="submit" id="submit">Submit</button>
+    </div> 
+    <!-- <label for="title">Title</label>
+    <input type="text" id="title" value="Title">
+
+    <label for="usecase">Usecase</label>
+    <select name="usecase" id="usecase">
+        <option value="dna">DnA</option>
+        <option value="eng">Engineering</option>
+        <option value="Tech">Tech</option>
+        <li id="usecase">{{formshow.usecase}}</li>
+    </select> 
+
+    <label for="desc">Description</label>
+    <input type="text" value="Description" id="desc">
+
+    <label for="author">Author</label>
+    <input type="text" value="Author" id="author">
+
+    <label for="lang">Language</label>
+    <select name="lang" id="lang">
+        <option value="dna">Python</option>
+        <option value="eng">SQL</option>
+        <option value="eng">R</option>
+    </select> 
+
+    <div class="submit_button">
+        <button type="submit" id="submit">Submit</button>
+    </div> -->
+    </form>
+</body>    
+
+{% endblock %}
+{% endblock %}

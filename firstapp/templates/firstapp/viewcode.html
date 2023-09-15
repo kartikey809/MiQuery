@@ -1,0 +1,223 @@
+{% extends 'commons/base.html' %}
+​
+{% block css %}
+​
+<style type="text/css">
+  .home-page {
+        height: 100%;
+        width:100%
+    }
+    body{
+      background: linear-gradient(48deg, #EA00AD 10%, #2B0030 97%) 0% 0% no-repeat padding-box !important;
+    }
+  .heading_usecase{
+        font-size: 30px;
+        font-weight: bold;
+        color: #FFCA01;
+        text-align: left;
+        margin-left: 5%;
+        margin-top: 1%;
+    }
+  .picture_usecase{
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    margin: 5px;
+  }
+  .use-cases{
+    margin-top: 5%;
+    /* margin-left: 5%; */
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 80px;
+    color: white;
+  }
+  .title-desc{
+    color: white;
+  }
+  .title-time{
+    font-weight: bold;
+  }
+  .upvote-obs{
+    margin-left: 75%;
+  }
+  .filter-bys1{
+    height: 50px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 4%;
+  }
+  .filter-bys2{
+    background-color: transparent; /* Replace with your desired background color */
+    color: white; /* Text color on the button */
+    padding: 10px; /* Adjust padding to your liking */
+    border-width: 3px;
+    border-color: none; 
+    cursor: pointer;
+    width: 100px;
+    height: 60px;
+    margin-top: 5%;
+    flex: content;
+    text-align: center;
+    margin-left: 4%;
+  }
+  .code-display{
+    background-color: black;
+    color: #5A9042;
+    margin: 4%;
+    padding: 5%;
+  }
+  .explain-code{
+    background-color: transparent;
+    color: white;
+    margin-top: 7%;
+  }
+  #upvote_hide{
+    color: transparent;
+  }
+
+  .tanishka{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    flex-wrap: wrap;
+
+  }
+
+  .yadav{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .image{
+    position: absolute;
+    padding-right: 20px;
+    text-align: center;
+    color: white;
+    /* zoom: 00%; */
+  }
+​
+</style>
+​
+{% endblock %}
+​
+{% block content %}
+​
+<div><a href="/explore">back</a></div>  
+<div class = " home-page ">
+ 
+  <div class="heading_usecase" style="float: left;">{{resp.usecase}}</div>
+  
+  
+  <div class="tanishka">
+   
+    <div class="yadav">
+      <i class="fa fa-eye  fa-xl image" aria-hidden="true"></i>
+      <p style="margin-left: 30px;" class="picture_usecase">{{resp.view_count}}</p>
+    </div>
+  
+    <div class="yadav">
+  <i id="cp" class="fa fa-clipboard image"></i>
+  <p id="cp_count" style="margin-left: 30px;" class="picture_usecase">{{resp.copy_count}}</p>
+  </div>  
+
+  <div class="yadav">
+  <i class="fa fa-arrow-up image" aria-hidden="true"></i>
+  <p id = "up_id" style="margin-left: 30px;" class="picture_usecase">{{resp.upvote}}</p>
+  </div> 
+
+  </div>
+
+
+
+</div>
+<div class="use-cases">
+  <div class="title_desc text-white">
+    <span>{{resp.description}}</span>
+  </div><br>
+  <div class="title_time" style="opacity: 0.5;">{{resp.uploadedon}}</div><br>
+  <div class="created-by">
+    <p>Created by</p>
+    <p>{{resp.author}}</p>
+  <div class="upvote-obs">
+    <button class="filter-bys1">{{resp.Isobsolete}}</button>
+    <button id="btn1" class="filter-bys2">Upvote</button>
+  </div>
+</div>
+<div class="code-display">
+  <div id="code_id">
+    <p>
+      {{resp.code}}
+    </p>
+  </div>
+</div>
+<div class="explain-code">
+  <div>Explanation of code:</div>
+  <span>
+    {{resp.explain}}
+  </span>
+  <span id="upvote_hide">{{resp.id}}</span>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+console.log("working");
+td_var = document.getElementById("up_id")
+cp_var = document.getElementById("cp_count")
+
+$("#btn1").click(function (event) {
+  id = document.getElementById("upvote_hide").innerHTML;
+  console.log(id)
+  curr_url = window.location.href;
+  fetch('/upvote/' + id, {
+    method: "GET"
+  })
+    .then((resp) => {
+      // console.log(resp.json())
+        // return Promise
+      return resp.json();
+    })
+    .then((data) => {
+        // log JSON data
+      //console.log(data);
+      td_var.innerHTML= data['upvote'];
+    });
+});
+</script>
+{% block scripts %}
+<script>
+    // Copy to ClipBoard
+  $("#cp").click(function (event) {
+  var copyText = document.getElementById("code_id").innerText;
+  var id = document.getElementById("upvote_hide").innerHTML;
+  var cp_var = document.getElementById("cp_count");
+  console.log(copyText)
+  // Select the text field
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText);
+  fetch('/copycount/' + id, {
+    method: "GET"
+  })
+    .then((resp) => {
+      // console.log(resp.json())
+        // return Promise
+      return resp.json();
+    })
+    .then((data) => {
+        // log JSON data
+      //console.log(data);
+      cp_var.innerHTML= data['copy_count'];
+    });
+});
+;
+
+</script>
+{% endblock scripts %}
+{% endblock %}

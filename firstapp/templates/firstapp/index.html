@@ -1,0 +1,122 @@
+{% extends 'commons/base.html' %}
+
+{% block css %}
+
+<style type="text/css">
+	.home-page {
+        height: 100%;
+    }
+  #CODE_ {
+		left: 35%;
+		top: 10%;
+		position: relative;
+		overflow: visible;
+		width: 163px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Niveau Grotesk;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 120px;
+		color: rgba(255,255,255,1);
+	}
+
+  #Lorem_ipsum_stuff {
+		/* top: 10%;  */
+    /* padding-top: 140px; */
+		position: relative;
+		overflow: visible;
+		width: 100%;
+		height: 100%;
+		line-height: 45px;
+		margin-top: -7.5px;
+		text-align: center;
+		font-family: Niveau Grotesk;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 15px;
+		color: rgba(255,255,255,1);
+	}
+  #Code_Button{
+    margin: 4%;
+    margin-left: 14%;
+  }
+  #Deck_Button{
+    margin: 4%;
+  }
+  #Upload_Button{
+    margin: 4%;
+  }
+
+  .main-center-di{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+  }
+
+  .my-button{
+    background-color: transparent; /* Replace with your desired background color */
+    color: white; /* Text color on the button */
+    padding: 10px 20px; /* Adjust padding to your liking */
+    border-width: 3px;
+    border-color: white; 
+    border-style: solid;
+    cursor: pointer;
+    width: 200px;
+    height: 60px;
+  }
+  .my-circle-button{
+    width: 50px; /* Set the width and height to create a square button */
+    height: 50px;
+    border-radius: 50%; /* Use border-radius to create a circular shape */
+    border-color: white;
+    font-size: large;
+    padding-bottom: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class = " home-page ">
+  <div id="CODE_">
+      <span id="animate" class="word-animate">CODE</span>
+  </div>
+  <script>
+    const text = document.querySelector(".word-animate");
+    const words = ["CODE", "UPLOAD", "UPVOTE"];
+    let currentWordIndex = 0;
+    function changeWord() {
+        text.textContent = words[currentWordIndex];
+        currentWordIndex = (currentWordIndex + 1) % words.length;
+    }
+    changeWord();
+    setInterval(changeWord, 2000);
+</script>
+    <div id="Lorem_ipsum_stuff">
+      <span>Experience MiQuery – Your centralized code repository. Explore MiQ's codebase effortlessly with advanced search and AI powered optimisation, boosting your development game. Transform your coding experience now!
+        Transform your coding experience now!  - This line is optional. Please see how wordy it looks and you can keep it get rid of it accordingly</span>
+    </div>
+    <div class="main-center-di">
+  <div id="Code_Button">
+    <a class="navbar-brand" href="{% url 'explore' %}">
+    <button class="my-button">EXPLORE</button></a>
+  </div>
+  <div id="Deck_Button">
+    <a href="/gpt_explain_page">
+    <button  class="my-button">OPTIMIZE</button></a>
+  </div>
+  <div id="Upload_Button">
+    
+    <a href="/newcode" ><button class="my-circle-button" >+</button></a>
+  </div>
+</div>
+
+</div>
+
+{% endblock %}

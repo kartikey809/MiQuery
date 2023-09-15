@@ -1,0 +1,211 @@
+{% extends 'commons/base.html' %}
+
+{% block css %}
+
+<style>
+    .upload-new-code{
+        top: 390px;
+        left: 163px;
+        text-align: left;
+        color: #FFCA01;
+        font: normal normal 600 50px/20px Tungsten;
+        letter-spacing: 0px;
+        color: #FFCA01;
+        text-transform: uppercase;
+        opacity: 1;
+    }
+    body{
+        background: transparent linear-gradient(48deg, #EA00AD 0%, #2B0030 100%) 0% 0% no-repeat padding-box !important;
+    }
+    textarea{
+        background: transparent;
+        width: 800px;
+        margin-top: 20px !important;
+        padding: 10px;
+        color: white;
+        border: 1px solid white;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: white;
+        opacity: 0.6; /* Firefox */
+    }
+    input {
+        background: transparent;
+        width: 800px;
+        margin-top: 20px !important;
+        padding: 10px;
+        border: 1px solid white;
+        /* opacity: 0.5; */
+        color: white;
+    }
+    button{
+        top: 1258px;
+        left: 163px;
+        width: 294px;
+        height: 50px;
+        /* padding: 40px; */
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        opacity: 1;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+{% block body %}
+
+<body>
+
+    <form action="{% url 'uploadcode' %}" method="post" style="padding: 50px;">
+        {% csrf_token %}
+        <div class="upload-new-code">
+            <p>UPLOAD NEW CODE</p>
+        </div>
+        
+        <div>
+
+            <label for="id_title"></label>
+
+            <input id = "title-form" type="text" name="title" maxlength="100" required id="id_title" placeholder="title">
+
+
+        </div>
+
+        <div>
+
+            <label for="id_usecase"></label>
+
+
+
+            <input type="text" name="usecase" maxlength="100" required id="id_usecase" placeholder="Usecase">
+
+
+        </div>
+
+        <div>
+
+            <label for="id_description"></label>
+
+
+
+            <textarea name="description" cols="40" rows="5" maxlength="100" required id="id_description" placeholder="Enter teh description here...">
+  </textarea>
+
+
+        </div>
+
+        <div>
+
+            <label for="id_code"></label>
+
+
+
+            <textarea name="code" cols="40" rows="7" required id="id_code" placeholder="Enter your code here...">
+  </textarea>
+
+
+        </div>
+
+        <div class="d-none">
+
+            <label for="id_copy_count">Copy count:</label>
+
+
+
+            <input type="hidden" name="copy_count" value="0" min="-9223372036854775808" max="9223372036854775807"
+                required id="id_copy_count">
+
+
+        </div>
+
+        <div class="d-none">
+
+            <label for="id_view_count">View count:</label>
+
+
+
+            <input type="hidden" name="view_count" value="0" min="-9223372036854775808" max="9223372036854775807"
+                required id="id_view_count">
+
+
+        </div>
+
+        <div class="d-none">
+
+            <label for="id_upvote">Upvote:</label>
+
+
+
+            <input type="hidden" name="upvote" value="0" min="-9223372036854775808" max="9223372036854775807" required
+                id="id_upvote">
+
+
+        </div>
+
+        <div class="d-none">
+
+            <label for="id_Isobsolete">Isobsolete:</label>
+
+
+
+            <input type="hidden" name="Isobsolete" id="id_Isobsolete">
+
+
+        </div>
+
+        <div >
+
+            <label for="id_author"></label>
+
+
+
+            <input type="text" name="author" maxlength="30" required id="id_author" placeholder="Author">
+
+
+        </div>
+
+        <div class="">
+
+            <label for="id_language"></label>
+
+
+
+            <input type="text" name="language" maxlength="10" required id="id_language" placeholder="language">
+
+
+        </div>
+
+        <div class="">
+
+            <label for="id_explain"></label>
+
+
+
+            <textarea  name="explain" cols="40" rows="10" required id="id_explain" placeholder="Explaination">
+  </textarea>
+
+
+        </div>
+
+        <div class="d-none">
+
+            <label for="id_uploadedon">Uploaded on:</label>
+
+
+
+            <input hidden type="text" name="uploadedon" value="2023-09-13" required id="id_uploadedon">
+
+
+
+
+        </div>
+
+
+        <div class="submit_button">
+            <button type="submit" id="submit">Submit</button>
+        </div>
+    </form>
+</body>
+{% endblock %}
+{% endblock %}

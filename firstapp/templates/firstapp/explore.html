@@ -1,0 +1,163 @@
+
+{% extends 'commons/base.html' %}
+​
+{% block css %}
+​
+<style type="text/css">
+	.home-page {
+        height: 100%;
+        color: white;
+    }
+    body{
+      background: linear-gradient(48deg, #EA00AD 10%, #2B0030 97%) 0% 0% no-repeat padding-box !important;
+    }
+  .heading_usecase{
+        font-size: 30px;
+        font-weight: bold;
+        color: #FFCA01;
+        text-align: left;
+        margin-left: 7%;
+    }
+  .heading_filter{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    margin-left: 7%;
+    margin-top: 5%;
+  }  
+​ 
+  .search-bar-buttons{
+    width:   100%;
+    display: flex;
+    justify-content: space-around;
+    /* padding: 20px; */
+	/* justify-content: space-around !important; */
+  }
+  .filter-elements{
+    width:   100%;
+    margin-top: 5%;
+    display: flex;
+  }
+  #search-bar{
+      background-color: transparent;
+      margin-top: 5%;
+      margin-left: 7%;
+      height: 60px;
+      width: 600px;
+      color: white;
+    }
+  #search-bar::placeholder{
+    color: white;
+    opacity: none;
+    padding-left: 10px;
+  }
+  .normal-search{
+    background-color: white; /* Replace with your desired background color */
+    color: black; /* Text color on the button */
+    padding: 10px; /* Adjust padding to your liking */
+    border-width: 3px;
+    /* border-color: white;  */
+    cursor: pointer;
+    width: 100px;
+    height: 60px;
+    margin-top: 5%;
+    flex: content;
+    text-align: center;
+    margin-left: 4%;
+  }
+  /* normal-search:hover{
+    border: 3px solid black;
+
+  } */
+  .filter-byss{
+    height: 50px;
+    background-color: transparent;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-left: 4%;
+  }
+  .use-cases{
+    margin-top: 5%;
+    margin-left: 75px;
+    border-bottom: 1px solid white;
+    margin-bottom: 80px;
+  }
+  
+  .title-usecase{
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5%;
+  }
+  .title-dept{
+    display: block;
+    margin-top: 5%;
+    font-size: 6px;
+    font-weight: bold;
+  }
+  .title-desc{
+    color: white;
+  }
+  .author{
+    font-weight: bold;
+  }
+​
+  .title-time{
+    font-weight: bold;
+  }
+  form{
+    width: 500px;
+  }
+  #btn-ab{
+    margin: 28px;
+    height: 50px;
+  }
+​ button{
+  /* background: transparent !important; */
+}
+/* #btn-filter{
+  background: black !important;
+} */
+</style>
+​
+{% endblock %}
+​
+{% block content %}
+​
+<div class = "home-page">
+  <div class="heading_usecase">USECASE</div>
+  <div class="search-bar-buttons d-flex justify-content-around">
+    <div>
+    <form class="d-flex justify-content-around">
+    <input class="normal-search" type="search" id="search-bar" name="qry" placeholder="What are you looking for?">
+    <button id="btn-ab" class="normal-search" type="submit">Search</button>
+    </form></div>
+    <button id="btn-ab" class="normal-search" onclick="window.open('/advsearch')" >Advanced Search</button>
+    <!-- <button id="btn-ab" class="normal-search" onclick="window.open('/gpt_explain_page')">GPT Search</button> -->
+  </div>
+  <div class="filter-elements">
+    <div  class="heading_filter">FILTER BY</div>
+    <div class="filter-byss">
+    <a id="btn-filter" href = "/eng" ><button>Engineering</button></a></div>
+    <div class="filter-byss">
+    <a href="/tech"><button>Tech</button></a></div>
+    <div class="filter-byss">
+    <a href="/dna"><button >DnA</button></a></div>
+  </div>
+  {% for r in resp %}
+  <div class="use-cases">
+    <div class="title_usecase"><a href="{% url 'viewcode' id=r.id %}">{{r.title}}</a></div>
+    <div class="title_dept">{{r.usecase}}</div>
+    <div class="title_desc">
+      <span>{{r.description}}</span>
+    </div><br>
+    <div class="author">{{r.author}}</div><br>
+    <div class="title_time">{{r.uploadedon}}</div><br><br>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
